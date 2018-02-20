@@ -126,6 +126,69 @@ public class BinarySearchTree {
 		}
 		
 	}
+	
+	public void postorderTraversal(Node root) {
+		// TODO Auto-generated method stub
+		if(root.value==-1) {
+			System.out.println("Tree not created");
+			return;
+		}
+		if(root.left==null && root.right==null) {
+			System.out.print(root.value + "\t");
+			return;
+		}else {
+			
+			if(root.left!=null) {
+				preorderTraversal(root.left);
+			}
+			
+			if(root.right!=null) {
+				preorderTraversal(root.right);
+			}
+			System.out.print(root.value + "\t");
+		}
+	}
+
+	public void inorderTraversal(Node root) {
+		// TODO Auto-generated method stub
+		if(root.value==-1) {
+			System.out.println("Tree not created");
+			return;
+		}
+		if(root.left==null && root.right==null) {
+			System.out.print(root.value + "\t");
+			return;
+		}else {
+			
+			if(root.left!=null) {
+				preorderTraversal(root.left);
+			}
+			System.out.print(root.value + "\t");
+			if(root.right!=null) {
+				preorderTraversal(root.right);
+			}
+		}
+	}
+
+	public void preorderTraversal(Node root) {
+		// TODO Auto-generated method stub
+		if(root.value==-1) {
+			System.out.println("Tree not created");
+			return;
+		}
+		if(root.left==null && root.right==null) {
+			System.out.print(root.value + "\t");
+			return;
+		}else {
+			System.out.print(root.value + "\t");
+			if(root.left!=null) {
+				preorderTraversal(root.left);
+			}
+			if(root.right!=null) {
+				preorderTraversal(root.right);
+			}
+		}
+	}
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
@@ -138,7 +201,7 @@ public class BinarySearchTree {
 		do {
 			System.out.println("\nEnter 1. to insert value into Binary search tree.\nEnter 2. to delete a value from Binary search tree.\nEnter 3 to search a value from Binary search tree.");
 			System.out.println("Enter 4. to get the minimum value from the tree.\nEnter 5. to get the minimum value from the tree.\nEnter 6. to find the height of the tree.");
-			System.out.print("Enter 7. for depth first trversal.\nEnter 8. to exit.\nEnter your choice: ");
+			System.out.print("Enter 7. for breadth first trversal.\nEnter 8. for depth first traversal.\nEnter 9. to exit.\nEnter your choice: ");
 			choice = scan.nextInt();
 			System.out.println("You entered choice is " + choice);
 			switch(choice) {
@@ -194,15 +257,33 @@ public class BinarySearchTree {
 				case 7:{
 					thisClass.showBfsTraversal(root);
 				}break;
-				case 8: break;
+				case 8:{
+					System.out.println("\nWhat type of depth first search algo do you want to use ?");
+					System.out.println("Enter 1. for preorder traversal.\nEnter 2. for inorder traversal.\nEnter 3. for postorder traversal.");
+					System.out.print("Enter your choice: ");
+					int type = scan.nextInt();
+					switch(type) {
+						case 1:{
+							thisClass.preorderTraversal(root);
+						}break;
+						case 2:{
+							thisClass.inorderTraversal(root);
+						}break;
+						case 3:{
+							thisClass.postorderTraversal(root);
+						}break;
+						default:{
+							System.out.println("You have not entered a proper choice. Please try again.");
+						}
+					}
+				}break;
+				case 9: break;
 				default:{
 					System.out.println("You have not entered a proper choice. Please try again.");
 				}
 			}
-		}while(choice!=8);
+		}while(choice!=9);
 		scan.close();
-	}
-
-	
+	}	
 
 }
